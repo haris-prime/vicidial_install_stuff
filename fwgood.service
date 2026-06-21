@@ -1,0 +1,13 @@
+[Unit]
+Description=Apply GOOD firewall allow-list (fwgood)
+# Make sure this runs after the firewall is up so the rule/proc/set exists.
+After=network-online.target SuSEfirewall2.service firewalld.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/fwgood.sh apply
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

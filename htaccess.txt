@@ -1,0 +1,18 @@
+# Rename to ".htaccess" in the iptable web directory.
+# Requires Apache "AllowOverride AuthConfig Limit" for this directory.
+
+AuthType Basic
+AuthName "Whitelist Management"
+AuthUserFile /srv/www/htdocs/iptable/.htpasswd
+Require valid-user
+
+# Never serve the raw data or list files over HTTP.
+<FilesMatch "\.(json|list|sh|conf|service)$">
+    Require all denied
+</FilesMatch>
+
+# Optional: also restrict to your office/VPN ranges (defence in depth).
+# <RequireAll>
+#   Require valid-user
+#   Require ip 203.0.113.0/24
+# </RequireAll>

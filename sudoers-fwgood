@@ -1,0 +1,4 @@
+# /etc/sudoers.d/fwgood   (install with: visudo -f /etc/sudoers.d/fwgood)
+# Lets the web server user run ONLY "fwgood.sh apply" as root, no password.
+# Nothing else. The script itself must be root-owned and not writable by wwwrun.
+wwwrun ALL=(root) NOPASSWD: /usr/local/sbin/fwgood.sh apply
